@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webテスト対策 - 四則逆算トレーニング</title>
+    <meta name="description" content="就活のWebテスト（SPI, 玉手箱など）で頻出の四則逆算問題を徹底対策！3つの実践モードで、計算速度と精度を向上させ、選考を突破しよう。">
+    <meta name="theme-color" content="#2a76f6"/>
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Mode Selection Screen -->
+        <div id="mode-selection-screen">
+            <h1>Webテスト対策<br>四則逆算トレーニング</h1>
+            <div class="mode-card-container">
+                <div class="mode-card" id="practice-mode">
+                    <h2>練習モード</h2>
+                    <p>時間無制限でじっくり問題に取り組めます。まずはここで問題形式に慣れましょう。</p>
+                </div>
+                <div class="mode-card" id="score-attack-mode">
+                    <h2>スコアアタック (60秒)</h2>
+                    <p>制限時間内にどれだけ多くの問題を解けるか挑戦。Webテストの時間圧を体感できます。</p>
+                    <p class="best-record">ハイスコア: <span id="best-score">0</span>問</p>
+                </div>
+                <div class="mode-card" id="time-trial-mode">
+                    <h2>タイムトライアル (10問)</h2>
+                    <p>規定問題数をどれだけ速く解けるか挑戦。正確性とスピードの両方を鍛えます。</p>
+                    <p class="best-record">ベストタイム: <span id="best-time">--:--.---</span></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Game Screen -->
+        <div id="game-screen" class="hidden">
+            <div class="game-header">
+                <div id="game-mode-display"></div>
+                <button id="back-to-home-from-game" class="home-button">ホーム</button>
+                <div id="stats-container">
+                    <div id="timer-display" class="stat-item"></div>
+                    <div id="score-display" class="stat-item"></div>
+                </div>
+            </div>
+            <div id="problem-container">
+                <p id="problem"></p>
+            </div>
+            <div class="answer-container">
+                <input type="number" id="answer" inputmode="decimal" placeholder="答えを入力">
+                <button id="submit">回答</button>
+            </div>
+            <p id="feedback"></p>
+            <button id="next-problem" class="hidden">次の問題へ</button>
+            <button id="give-up" class="hidden">あきらめる</button>
+        </div>
+
+        <!-- Result Screen -->
+        <div id="result-screen" class="hidden">
+            <h2>結果</h2>
+            <p id="result-text"></p>
+            <p id="new-record-text"></p>
+            <div id="result-details-container" class="hidden">
+                <h2>振り返り</h2>
+                <div id="result-details"></div>
+            </div>
+            <div class="result-actions">
+                <button id="restart-game">もう一度挑戦</button>
+                <a id="twitter-share" href="#" target="_blank" class="button">結果をXで共有</a>
+                <button id="back-to-home">ホームに戻る</button>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js').then(registration => {
+                    console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                }, err => {
+                    console.log('ServiceWorker registration failed: ', err);
+                });
+            });
+        }
+    </script>
+</body>
+</html>
